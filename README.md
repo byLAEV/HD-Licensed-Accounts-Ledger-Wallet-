@@ -133,12 +133,6 @@ Forks and derivative works must:
 
 ---
 
-## License
-**License: TBD**  
-A license will be selected that preserves attribution and protects the authored design, with a controlled usage model where applicable.
-
----
-
 ## Glossary
 - **HD**: Hierarchical Deterministic derivation.
 - **KeyClass**: segregated key purpose domain.
