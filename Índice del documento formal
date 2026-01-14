@@ -1,0 +1,144 @@
+# Documento Wallet/Core — Billetera HD Determinista por Licencia (e-Bitcoin) — Diseño by LAEV
+
+## Portada
+- Título oficial
+- Autoría: **Lerry Alexander Elizondo Villalobos (LAEV) / LAEV Blockchain 🦩**
+- Versión, fecha (civil) y referencia TUC (si aplica), estado del documento
+- Aviso de propiedad intelectual y reserva de derechos
+
+## 0. Resumen Ejecutivo
+0.1 Definición del Wallet/Core en 1 párrafo  
+0.2 Problema industrial que resuelve (bullets)  
+0.3 Diferenciadores clave (bullets)  
+0.4 Alcance del documento (incluye/excluye)  
+0.5 Atribución de diseño (by LAEV) y alcance de implementación por terceros (fabricantes/integradores)
+
+## 1. Contexto y Problema Industrial
+1.1 Incoherencia del sector: operación centralizada interna vs productos descentralizados externos  
+1.2 Limitaciones de HD wallets modernas para adopción empresarial e institucional  
+1.3 Requisitos operativos reales: control interno, segregación de funciones, trazabilidad, auditoría, cumplimiento, automatización autorizada
+
+## 2. Marco Terminológico by LAEV
+2.1 Parámetros de protocolo (comportamiento configurable)  
+2.2 Directrices normativas (interpretación y aplicación institucional)  
+2.3 Contratos legales (obligaciones exigibles asociadas a firmas)  
+2.4 Procesos (flujos deterministas solicitud→aprobación→ejecución→cierre)  
+2.5 Condiciones de validez (requisitos verificables para actos)  
+2.6 Soberanía Delegada (delegación de capacidad de actuar sin ceder control del régimen de licencia)  
+2.7 Glosario: Hash Paper, TUC, ON/OFF, LicenseID, Enterprise Profile, Individual Profile, Device Profile, KeyClass, LeafID, Office, etc.
+
+## 3. Visión del Sistema Wallet/Core
+3.1 Principios de diseño: minimalismo, determinismo, seguridad inside-out, trazabilidad por evidencia  
+3.2 Componentes relacionados (sin mercado abierto):
+- Consenso e-Bitcoin (validación/despacho de licencias como condición)
+- Office descentralizado (administración y almacenamiento referenciado)
+- Hash Paper (expedientes firmados)
+- Wallet/Core HD por Licencia (derivación + enforcement)
+3.3 Autonomía de gobernanza/operación y capacidad de anclaje externo de evidencias cuando aplica (sin dependencia operativa)
+
+## 4. Arquitectura de Alto Nivel
+4.1 Diagrama de componentes: Wallet/Core ↔ API ↔ Consenso ↔ Office  
+4.2 Límites de confianza (trust boundaries) y superficies de ataque  
+4.3 Distribución de datos: on-chain / evidencia-commitments / almacenamiento referenciado (Office)  
+4.4 Pertenencia verificable: asociación de entidad/licencia sin revelar material secreto
+
+## 5. Modelo de Identidad, Licencias, Dispositivos y Soberanía Delegada
+5.1 Enterprise Profile (empresa)  
+5.2 Individual Profile (usuario/funcionario)  
+5.3 Device Profile (hardware/software)  
+5.4 Soberanía Delegada: delegación de capacidad de actuar manteniendo control del régimen de licencia  
+5.5 Estados ON/OFF por entidad (empresa, usuario, rol, dispositivo)  
+5.6 Alta, suspensión, revocación y trazabilidad de cambios por Hash Paper + TUC
+
+## 6. HD Determinista por Licencia: Derivación, Dominios y Parámetros
+6.1 Entropía: idiomas y longitudes (preferencia por entropías altas) — incluye entropía para derivación HD y para emisión de licencias vinculada a TUC  
+6.2 Passphrase obligatoria como condición mínima no degradable  
+6.3 Hardened obligatorio: finalidad y aplicación por dominio  
+6.4 KeyClass: Money vs Documents/Admin (separación de dominios)  
+6.5 Paths por sectores (contabilidad, tesorería, RRHH, administración, etc.)  
+6.6 Parámetros de derivación por entidad (empresa/individuo) y restricciones operativas  
+6.7 Interacción nativa eUSD/eBTC vs HD externa añadible (definición y perímetro del core)
+
+## 7. Hash Paper y Expedientes: Modelo de Evidencia
+7.1 Estructura de Hash Paper (metadatos, firmas, referencias, estado)  
+7.2 Referenciación a documentos/almacenamiento (enlaces verificables al Office)  
+7.3 LeafID y expediente por identificador (mapeo a árbol Merkle binario)  
+7.4 Ciclo de vida del expediente: crear → aprobar → ejecutar → cerrar  
+7.5 TUC como marco temporal de validez y orden de precedencia temporal
+
+## 8. Procesos Operativos del Wallet/Core
+> Formato estándar por proceso: propósito, entradas, condiciones de validez, Hash Papers requeridos, firmas/quórums, estados ON/OFF, evidencias, salidas, fallos típicos.
+
+8.1 Onboarding (empresa e individuo)
+
+8.2 Emisión y despacho de licencias por consenso  
+8.2.1 Liquidación de pago y registro del evento de adquisición (canales omnicanal)  
+8.2.2 Generación de LicenseID por entropía del TUC Block (pulso del protocolo)  
+8.2.3 Definición de vigencia por cantidad de TUC Blocks (inicio, expiración, renovación)  
+8.2.4 Cifrado del payload de licencia y encapsulamiento/entrega vía Hash Paper  
+8.2.5 Validación local/asíncrona de vigencia: Hash Paper vs altura TUC (sin servidor central)  
+8.2.6 Invalidación, alertas y transición a OFF/Freeze por expiración o condición de riesgo
+
+8.3 Gestión de roles/jefaturas y permisos por estructura binaria (organigrama)  
+8.4 Activación/desactivación de trabajador (ON/OFF)  
+8.5 Cambio de dispositivo + alertas + bloqueo condicional  
+8.6 Firma documental (público/privado) con hardened “por evento”  
+8.7 Tesorería/pagos: aprobación y ejecución como proceso (automatización autorizada)  
+8.8 Recuperación, rotación, revocación y Freeze (OFF preventivo como cortafuego + reactivación controlada)
+
+## 9. Parámetros de Seguridad y Condiciones No Degradables
+9.1 Mínimos no degradables (passphrase, hardened, separación KeyClass, quórums mínimos)  
+9.2 Parámetros configurables (ventanas TUC, límites, horarios, scopes)  
+9.3 Concurrencia, precedencia y resolución de conflictos entre solicitudes (determinismo)  
+9.4 Privacidad organizacional: exposición mínima vs commitments y referencias
+
+## 10. Integración con Hardware Wallets USB (Fabricantes)
+10.1 Justificación de adopción mundial (sin manufactura by LAEV)  
+10.2 Perfil de empresa del fabricante en e-Bitcoin (Enterprise Profile del fabricante)  
+10.3 Requisitos mínimos del dispositivo: firmar Hash Paper; aplicar licencias y estados ON/OFF; respetar KeyClass y paths; control de extracción/uso de claves  
+10.4 Habilitación/revocación de modelos y lotes por parámetros y procesos  
+10.5 Compatibilidad, certificación, versionado y trazabilidad
+
+## 11. API Wallet/Core (Integradores, sin mercado abierto)
+11.1 API como canal oficial para publicar/consultar evidencias, estados y perfiles válidos  
+11.2 Objetos principales: licencias, perfiles, dispositivos, Hash Papers, estados ON/OFF  
+11.3 Consulta de vigencia de licencia y estado ON/OFF asociado (para integradores)  
+11.4 Garantías del API: qué valida y qué no valida (perímetro de responsabilidad)  
+11.5 Versionado y compatibilidad
+
+## 12. Casos de Uso (Wallet/Core)
+12.1 Empresa: tesorería y pagos autorizados con automatización por condiciones  
+12.2 Empresa: firma documental con trazabilidad y responsabilidad por rol  
+12.3 Gobierno/institución: funcionario con permisos binarios y freeze preventivo  
+12.4 Fabricante: integración hardware wallet USB bajo perfil de empresa  
+12.5 Usuario individual: eUSD/eBTC nativo + HD externa añadible como cartera estándar (perímetro del core)
+
+## 13. Comparación con el Estado del Arte (Wallets HD comunes)
+13.1 BIP32/39/44 y wallet estándar  
+13.2 Multisig empresarial tradicional y custodios  
+13.3 Diferencias por ejes: gobernanza, auditoría, validez, adopción, UX, riesgo, interoperabilidad
+
+## 14. Propiedad Intelectual, Autoría y Criterios Técnicos de Identificación del Método
+14.1 Declaración de autoría by LAEV  
+14.2 Alcance de protección: método/sistema/aparato  
+14.3 Criterios técnicos de identificación del método (núcleo):
+- validación por licencia ON/OFF aplicada a HD determinista
+- Hash Paper como expediente firmado
+- anclaje temporal TUC
+- KeyClass y separación de dominios
+- paths por sectores y soberanía delegada
+14.4 Implementación por terceros: fabricantes e integradores bajo licenciamiento  
+14.5 Evidencia documental de desarrollo y trazabilidad (hashes/bitácoras/timestamps)
+
+## 15. Cierre
+- Síntesis concluyente del Wallet/Core y su alcance institucional
+- Declaración final de validez conceptual y perímetro operativo
+
+# Anexos
+A. Tabla de parámetros (nombre, tipo, rango, default, efecto)  
+B. Tabla de estados ON/OFF por entidad y por proceso  
+C. Plantillas de Hash Paper (create/approve/execute/close/freeze)  
+D. Diagramas de flujo por proceso (BPMN o equivalente)  
+E. Glosario extendido  
+F. Modelo de amenazas resumido y mitigaciones por diseño
+```0
